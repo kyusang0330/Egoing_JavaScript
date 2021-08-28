@@ -13,7 +13,7 @@ alert와 console.log 둘 다 괄호 안에 숫자를 넣어서 사칙연산을 �
 
 2. Math
 
-Math.pow(숫자 1, 숫자 2); -> 숫자1의 숫자2승의 된다. (예) Math.pow(3,2);는 9
+Math.pow(숫자 1, 숫자 2); -> 숫자1의 숫자2승이 된다. (예) Math.pow(3,2);는 9
 
 Math.round(10.6); -> 11
 round는 괄호 안에 있는 숫자를 반올림해준다.
