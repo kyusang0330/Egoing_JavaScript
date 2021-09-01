@@ -1,0 +1,41 @@
+개발환경 : F12(개발자 도구)
+
+1. 비교연산자
+
+1) == : 동등 연산자.
+        예) alert(1==2)             //알림창에 false
+            alert(1==1)             //알림창에 true
+            alert("one"=="two")     //알림창에 false 
+            alert("one"=="one")     //알림창에 true
+            alert(1=='1');          //알림창에 true
+
+
+2) === : 일치 연산자.
+         예) alert(1==='1');             //false
+
+같은 1이라는 의미지만 뒤에는 ''이 있어서 일치 연사자에서는 false가 표시된다.
+일치 연산자는 앞과 뒤가 완전히 똑같아야 한다.
+
+* null : 비어있다는 것을 의미한다. (=undefined)
+
+* boolean에는 true와 false가 있는데, true는 1을 의미한다.
+예) alert(true==1);       //알림창에 true
+
+* NaN은 0/0이라는 뜻으로 무엇을 해도 false라고 알림창에 뜬다
+예) alert(NaN===NaN);      //알림창에 false
+
+3) !=, !==
+
+!는 부정을 의미한다. !=는 같지 않다는 것을 의미한다.
+
+예) alert(1!=2);            //알림창에 true
+    alert(1!=1);            //알림창에 false
+    alert("one"!="two");    //알림창에 true
+    alert("one"!="one");    //알림창에 false 
+
+!==
+예) alert(1!==1);           //알림창에 false
+    alert(1!=='1');         //알림창에 true
+
+
+
