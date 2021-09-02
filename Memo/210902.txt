@@ -1,0 +1,114 @@
+개발환경 : vscode, 개발자 도구
+
+1. 반복문 if
+
+1) 기본
+
+if(true ro false){
+
+}
+
+괄호 안에 true면 안에 있는게 다 울력된다
+false면 아무것도 출력되지 않는다.
+
+2) else, else if
+
+if(true or false){
+    alert(1);
+}
+else{
+    alert(2);
+}
+
+true면 1이 출력되고, false면 2가 출력된다.
+
+----------------------------------------------------------------
+
+if(true or false){
+    alert(1);
+}
+else if(true or false){
+    alert(2);
+}
+else if(true or false){
+    alert(3);
+}
+else{
+    alert(4);
+}
+
+true, true, true면 1이 출력되고, false,true,true면 2가 출력되고
+false,false,true면 3이 출력되고, false,false,false면 4가 출력된다.
+
+3) 변수를 선언하여 if문 만들기
+
+<script>
+        id = prompt('아이디를 입력해주세요.')
+        if(id=='egoing'){
+            alert('아이디가 일치 합니다.')
+        } else {
+            alert('아이디가 일치하지 않습니다.')
+        }
+    </script>
+
+egoing을 올바르게 치면 아이디가 일치 합니다. 라고하고 
+잘못쳤을 땐 아이디가 일치하지 않습니다.라는 창이뜬다.
+
+-------------------------------------------------------------------
+
+ <script>
+        id = prompt('아이디를 입력해주세요.');
+        if(id=='egoing'){
+            password = prompt('비밀번호를 입력해주세요.');
+            if(password==='111111'){
+                alert('인증 했습니다.');
+            } else {
+                alert('인증에 실패 했습니다.');
+            }
+        } else {
+            alert('인증에 실패 했습니다.');
+        }
+    </script>
+아이디를 올바르게 치지 않았을 때는 인증에 실패 했습니다. 라는 창이 뜨고,
+올바르게 치고 비밀번호까지 올바르게 쳤으면 인증 했습니다.라는 화면이 뜨고,
+틀렷을 땐 인증에 실패했습니다.라는 창이 뜬다.
+
+4) %%, ||
+
+&&은 and
+||은 or
+
+&&로 인해 위에 코드를 좀더 간단하게 만들수 있다.
+
+ <script>
+            var id = prompt('아이디를 입력해주세요.')
+            var password = prompt('비밀번호를 입력해주세요.')
+                
+            if(id=='egoing' && password === '111111'){
+                if (password=='111111'){
+                    alert('로그인 하셨습니다.'+id+'반갑습니다.')
+                }
+            } else{
+                alert('아이디가 일치하지 않습니다.')
+            }
+
+        </script>
+
+&&은 괄호 안에 여러개를 사용할 수 있다.
+
+||도 괄호 안에 여러개 사용할 수 있다.
+
+5) !부정
+
+!는 부정의 뜻이다.
+!ture는 false이고 !false는 true다.
+
+false로 간주되는 데이터가 있는데,
+
+*''안에 내용이 없는 경우
+*undefined
+*var롤 변수를 선언했는데 값이 없는 경우
+*null
+*NaN
+
+
