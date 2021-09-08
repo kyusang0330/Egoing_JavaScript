@@ -1,0 +1,47 @@
+개발환경 : vscode
+
+1. 반복문 for, while
+
+1) while, for
+
+조건문에는 while,for문이 있다.
+while(조건){
+      document.write('coding everybody <br />');
+}
+---------------------------------------------------------------
+var i = 0;
+while(i<10){
+    document.write('coding everybody <br />');
+    i++
+}
+
+while문은 이렇게 사용한다
+조건안에 조건이 true이면 실행이되고 false이면 실행이 되지 않는다.
+for문은 이것을 조금 더 간단히 쓸수 있는데, var i = 0; , i++을 조건 괄호안에 넣어주면 된다.
+
+for(var i = 0; i < 10; i++){
+    document.write('coding everybody'+i+'<br />');
+}
+
+for문을 사용하면 조금 더 간단히 사용할 수 있다.
+
+* i++, ++i, i=i+1
+   i=i+1;
+    i++   i=0이었을떄 0으로 시작
+    ++i   i=0이 었을때 1로 시작
+    3개 다 똑같은 뜻이지만 i++과 ++i조금 다르다.
+
+2) 반복문의 제어
+
+반복문 안에 반복문을 더 사용할 수 있고, if문도 사용할 수 있다.
+
+for(var i = 0; i < 10; i++){
+    if(i === 5) {
+        break (or continue);
+    }
+    document.write('coding everybody'+i+'<br />');
+}
+
+break를 사용하면 멈추고, continue를 사용하면 그 부분만 제외하고 이어나간다.
+
+
