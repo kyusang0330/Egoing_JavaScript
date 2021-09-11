@@ -1,0 +1,53 @@
+개발환경 : vscode
+
+1. 객체
+
+1) 생성 방법
+var grades = {'egoing': 10, 'k8805': 6, 'sorialgi': 80};
+
+grades가 변수(객체)
+egoing, k8805, sorialgi는 key이고 숫자는 value이다.
+
+var grades = {};
+grades['egoing'] = 10;
+grades['k8805'] = 6;
+grades['sorialgi'] = 80;
+
+----------------------------------
+
+var grades = new Object();
+grades['egoing'] = 10;
+grades['k8805'] = 6;
+grades['sorialgi'] = 80;
+
+객체를 만드는 다른 방법이다.
+{}는 new Object();와 같은 뜻이다.
+
+2) 반복문과 조우
+
+var grades = {'egoing': 10, 'k8805': 6, 'sorialgi': 80};
+for(key in grades) {
+    document.write("key : "+key+" value : "+grades[key]+"<br />");
+}
+
+for문에 새로운 사용방법에 대해 배웠다. key를 입력하면  이름이 나오고,
+grades[key]를 입력하면 value값이 나온다.
+key in grades 이 부분으로 인해 그렇게 된것이다.
+
+3) 객체 지향 프로그래밍
+
+var grades = {
+    'list': {'egoing': 10, 'k8805': 6, 'sorialgi': 80},
+    'show' : function(){
+        for(var name in this.list){
+            document.write(name+':'+this.list[name]+"<br />");
+        }
+    }
+};
+grades.show();
+
+함수도 들어갈 수 있고, this도 배웠다. 
+이정도의 설명만 간단히 하고, 다음에 제대로 배운다고 하고 넘어갔다.
+
+
+
