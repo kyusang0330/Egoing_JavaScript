@@ -1,0 +1,10 @@
+개발 환경 : vscode
+
+
+1. 자바스크립트의 모듈
+
+파일명.js를 만들고 html파일head태그에 
+<script src="파일명.js"></script>를 써주면 된다.
+
+
+ 
