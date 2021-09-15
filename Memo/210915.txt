@@ -1,0 +1,138 @@
+개발환경 : vscode
+
+1. 유효 범위
+
+1) 지역 변수와 전역 변수
+
+var vscope = 'global';
+function fscope(){
+    var vscope = 'local';
+    alert(vscope);
+}
+fscope();
+alert(vscope);
+
+같은 변수명으로 호출했을 때, 함수 밖에 있는 변수는 전역 변수라고하고
+함수 안에 있는 변수는 지역 변수라고 한다.
+지역 변수는 함수 안에서만 유효하고 전역 변수는 모든 곳에서 유효하다. 그래서
+global이 출력된다.
+
+var vscope = 'global';
+function fscope(){
+    vscope = 'local';
+    alert(vscope);
+}
+fscope();
+alert(vscope);
+
+함수 안에 var을 없애버리면 지역 변수가 사라지는 것이기 때문에, 함수 밖에서 호출된
+global은 함수 안에서 vscope = 'local'을 해줘서 local로 바뀐다.
+출력값 local
+
+2) 지역변수 사용
+
+- 지역 변수 사용
+
+function a (){
+    var i = 0;
+}
+for(var i = 0; i < 5; i++){
+    a();
+    document.write(i);
+}
+
+이 코드는 01234가 출력된다.
+여기서 함수 안에 var을 없애주면
+
+- 전역 변수 사용
+
+function a (){
+    i = 0;
+}
+for(var i = 0; i < 5; i++){
+    a();
+    document.write(i);
+}
+
+무한 루프를 돌면서 실행이 되지 않는다.
+
+결론 :i는 전역 변수로 사용하면 안된다.
+
+3) 전역 변수 사용, 익명 함수
+
+var MYAPP = {}
+MYAPP.calculator = {
+    'left' : null,
+    'right' : null
+}
+MYAPP.coordinate = {
+    'left' : null,
+    'right' : null
+}
+ 
+MYAPP.calculator.left = 10;
+MYAPP.calculator.right = 20;
+function sum(){
+    return MYAPP.calculator.left + MYAPP.calculator.right;
+}
+document.write(sum());
+
+* calculator는 계산, coordinate는 좌표?라는 뜻
+
+전역 변수를 선언하여 계산할 수 있다.
+전역 변수를 사용하고 싶지 않다면,
+
+(function(){
+    var MYAPP = {}
+    MYAPP.calculator = {
+        'left' : null,
+        'right' : null
+    }
+    MYAPP.coordinate = {
+        'left' : null,
+        'right' : null
+    }
+    MYAPP.calculator.left = 10;
+    MYAPP.calculator.right = 20;
+    function sum(){
+        return MYAPP.calculator.left + MYAPP.calculator.right;
+    }
+    document.write(sum());
+}())
+
+전역변수를 함수로 감싸서 익명 함수로 바꿔주면 된다.
+
+4) 유효 범위의 대상
+
+for(int i = 0; i < 10; i++){
+    String name = "egoing";
+}
+System.out.println(name);
+
+이것은 호출되지 않는다.
+for 문은 {}안에서 호출해줘야 한다.
+js에서 지역변수는 함수에서만 유효하다.
+
+5) 정적 유효 범위
+
+var i = 5;
+ 
+function a(){
+    var i = 10;
+    b();
+}
+ 
+function b(){
+    document.write(i);
+}
+ 
+a();
+
+함수 b는 여기서 b();이 있는 10으로 가지않고, 맨 위에 있는 전역 변수 var i = 5;로 간다.
+
+
+
+
+
+
+
