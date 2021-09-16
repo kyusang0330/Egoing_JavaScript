@@ -1,0 +1,178 @@
+
+1. 값으로서의 함수와 콜백
+
+
+1) 함수의 용도
+
+function a(){} 
+함수 a는 변수 a에 담겨진 값이다.
+
+a = {
+    b:function(){
+    }
+};
+메소드 : 객체의 속성 값으로 담겨진 함수
+
+예)
+function cal(func, num){
+    return func(num)
+}
+function increase(num){
+    return num+1
+}
+function decrease(num){
+    return num-1
+}
+alert(cal(increase, 1));
+alert(cal(decrease, 1));
+
+* 리턴 값 사용
+
+function cal(mode){
+    var funcs = {
+        'plus' : function(left, right){return left + right},
+        'minus' : function(left, right){return left - right}
+    }
+    return funcs[mode];
+}
+alert(cal('plus')(2,1));
+alert(cal('minus')(2,1));   
+
+* 배열 값 사용
+
+var process = [
+    function(input){ return input + 10;},
+    function(input){ return input * input;},
+    function(input){ return input / 2;}
+];
+var input = 1;
+for(var i = 0; i < process.length; i++){
+    input = process[i](input);
+}
+alert(input);
+
+process.length이 붙어서 input 값을 첫 번째 +10을 해주고 *input을 해주고
+/2를 해줘서 마지막 값이 출력된다.
+
+2) 콜백
+
+var numbers = [20, 10, 9,8,7,6,5,4,3,2,1];
+var sortfunc = function(a,b){
+    console.log(a,b);
+    return a - b;
+
+}
+console.log(numbers.sort(sortfunc));
+
+원래는 저 위에 선언된 숫자들이 순서대로 있지 않고,
+숫자의 앞자리만 순서대로 있었는데, 
+return a-b;로 인해서 숫자 순서가 정렬이 되었다.
+return a-b;를 사용하기 전엔 if문을 사용했었는데 
+return a-b;가 훨씬 간단하다.
+
+2.클로저
+
+1) 외부함수, 내부 함수
+
+function outter(){
+    function inner(){
+        var title = 'coding everybody'; 
+        alert(title);
+    }
+    inner();
+}
+outter();
+
+outter가 있는 곳이 외부함수
+inner가 있는 곳이 내부함수
+결과 : coding everybody
+
+function outter(){
+    var title = 'coding everybody';  
+    function inner(){        
+        alert(title);
+    }
+    inner();
+}
+outter();
+
+var title = 'coding everybody'; 의 위치를 내부함수에서 외부함수로
+옮겨주어도 결과는 똑같다.
+
+2) 클로저
+
+function outter(){
+    var title = 'coding everybody';  
+    return function(){        
+        alert(title);
+    }
+}
+inner = outter();
+inner();
+
+내부함수와 밀접하다
+내부함수는 외부함수의 지역변수에 접근 할 수 있는데 외부함수의 실행이 끝나서 
+외부함수가 소멸된 이후에도 내부함수가 외부함수의 변수에 접근 할 수 있다. 
+
+3) 비밀 함수(변수)
+
+function factory_movie(title){
+    return {
+        get_title : function (){
+            return title;
+        },
+        set_title : function(_title){
+            title = _title
+        }
+    }
+}
+ghost = factory_movie('Ghost in the shell');
+matrix = factory_movie('Matrix');
+ 
+alert(ghost.get_title());
+alert(matrix.get_title());
+ 
+ghost.set_title('공각기동대');
+ 
+alert(ghost.get_title());
+alert(matrix.get_title());
+
+우선 결과는 Ghost in the shell, Matrix, 공각기동대, Matrix 순으로 출력된다.
+ghost.set_title('공각기동대'); 이걸로 중간에 이름을 바꾸었다.
+
+ get_title : function (){
+            return title;
+        },
+        set_title : function(_title){
+            title = _title
+        }
+이 부분이 내부 함수(비밀 함수)이다.
+
+----------------------------------------------------------------------------------
+var arr = []
+for(var i = 0; i < 5; i++){
+    arr[i] = function(){
+        return i;
+    }
+}
+for(var index in arr) {
+    console.log(arr[index]());
+}
+이 코드를 실행해서
+
+01234가 나올 줄 알았지만 5가 5번 출력되었다. 원하는 값이 나오지 않앗다.
+i말고 새로운 변수를 선언해주고 내부 함수를 만들어야 한다.
+
+var arr = []
+for(var i = 0; i < 5; i++){
+    arr[i] = function(id) {
+        return function(){
+            return id;
+        }
+    }(i);
+}
+for(var index in arr) {
+    console.log(arr[index]());
+}
+
+이렇게 코드를 수정하면 원하던 01234가 출력된다.
