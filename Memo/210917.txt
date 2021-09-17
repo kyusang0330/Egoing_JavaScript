@@ -1,0 +1,62 @@
+
+1. arguments
+
+function sum(){
+    var i, _sum = 0;    
+    for(i = 0; i < arguments.length; i++){
+        document.write(i+' : '+arguments[i]+'<br />');
+        _sum += arguments[i];
+    }   
+    return _sum;
+}
+document.write('result : ' + sum(1,2,3,4));
+
+function sum() 이 괄호 안에는 인자와 매개변수가 안 들어갔는데,
+ sum(1,2,3,4) 맨 마지막 줄 이곳에는 들어가 있다. 
+처음엔 안들어갔지만 마지막에 들어가도 된다고 한다.
+js는 이렇게 사용해도 된다.
+
+arguments라는 것은 함수 안에 약속되어있는 변수, 일종의 배열이다.
+그래서 선언하지 않아도 저렇게 사용할 수 있다.
+
+_sum += arguments[i];
+여기서 +=은 쉽게 설명하면
+a+=1
+a=a+1
+이 둘은 같은 뜻이다.
+
+그래서 위에 결과 값은 10이다.
+
+function zero(){
+    console.log(
+        'zero.length', zero.length,
+        'arguments', arguments.length
+    );
+}
+function one(arg1){
+    console.log(
+        'one.length', one.length,
+        'arguments', arguments.length
+    );
+}
+function two(arg1, arg2){
+    console.log(
+        'two.length', two.length,
+        'arguments', arguments.length
+    );
+}
+zero(); 
+one('val1', 'val2');  
+two('val1');  
+
+첫 번째 함수 zero에서는 인자도 없고 마지막에 zero();에서도 인자 값이 없어서 
+zero.length 0, arguments 0 이 출력되고,
+
+두 번째 함수 one에서는  인자가 하나 one('val1', 'val2'); 인자가 2개여서
+one.length 1 arguments 2이 출력된다.
+
+세 번째 함수 two에서는 인자가 2개, two('val1'); 인자가 1개여서
+two.length 2 arguments 1이 출력된다.
+
+
+
