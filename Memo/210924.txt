@@ -1,0 +1,89 @@
+
+1. 생성자와 new
+
+1) 객체 생성
+var person = {}
+person.name = 'egoing';
+person.introduce = function(){
+    return 'My name is '+this.name;
+}
+document.write(person.introduce());
+
+위는 객체를 만드는 과정이 분산되어 있어서 아래의 방법을 사용한다.
+
+var person = {
+    'name' : 'egoing',
+    'introduce' : function(){
+        return 'My name is '+this.name;
+    }
+}
+document.write(person.introduce());
+
+객체를 생성할 때 이 2가지 방법을 사용할 수 있다.
+
+이 2가지 방법은 다른 사람의 이름을 만들 때 저 코드를 계속 반복해서 사용해야 한다.
+그래서 생성자가 필요한 것이다.
+
+2) 생성자 new
+
+new를 사용하면 생성자를 사용하는 것인데 위에 코드를 생성자를 사용하여서 바꿔본다.
+
+(하나의 이름을 사용했을 때)
+
+function Person(){}
+var p = new Person();
+p.name = 'egoing';
+p.introduce = function(){
+    return 'My name is '+this.name; 
+}
+document.write(p.introduce());
+
+(여러 사람의 이름을 사용할 때)
+
+function Person(){}
+var p1 = new Person();
+p1.name = 'egoing';
+p1.introduce = function(){
+    return 'My name is '+this.name; 
+}
+document.write(p1.introduce()+"<br />");
+ 
+var p2 = new Person();
+p2.name = 'leezche';
+p2.introduce = function(){
+    return 'My name is '+this.name; 
+}
+document.write(p2.introduce());
+
+이렇게 사용하였을 때 별로 개선된 것이 없다. 
+
+function Person(name){
+    this.name = name;
+    this.introduce = function(){
+        return 'My name is '+this.name; 
+    }   
+}
+var p1 = new Person('egoing');
+document.write(p1.introduce()+"<br />");
+ 
+var p2 = new Person('leezche');
+document.write(p2.introduce());
+
+function에 함수를 정의해주고, 그 밑에 생성자 new를 사용하여 반복하면
+여러명의 사람을 정의할 수 있다.
+
+2. 전역 객체
+this를 배우기 전에 개념을 알아둬야한다.
+전역객체는 특수한 객체이다.
+
+var o = {'func':function(){
+    alert('Hello?');
+}}
+o.func();
+window.o.func();
+
+아래의 두 줄은 같은 뜻이다. 웹브라우저에서는 window가 전역객체이고
+node에서는 global이 전역객체이다.
+
+
+
