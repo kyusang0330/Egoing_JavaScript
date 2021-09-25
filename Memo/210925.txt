@@ -1,0 +1,146 @@
+
+1. this
+
+1) 함수에서 this
+
+함수에서 this는 전역객체 window와 같다.
+
+2) 메소드와 this
+
+객체의 소솟인 메소드의 this는 그 객체를 가르킨다.
+
+var o = {
+    func : function(){
+        if(o === this){
+            document.write("o === this");
+        }
+    }
+}
+o.func(); 
+
+0 === this
+
+3) 생성자와 this
+
+var funcThis = null; 
+ 
+function Func(){
+    funcThis = this;
+}
+var o1 = Func();
+if(funcThis === window){
+    document.write('window <br />');
+}
+ 
+var o2 = new Func();
+if(funcThis === o2){
+    document.write('o2 <br />');
+}
+
+생성자는 빈 객체를 만들고 이 객체내에서 this는 만들어진 객체를 가르킨다.
+생성자가 실행되기 전까지는 객체는 변수에도 할당될 수 없기 때문에 this가 아니면 객체에 대한
+어떠한 작업을 할 수 없다.
+
+4) apply와 this
+
+var o = {}
+var p = {}
+function func(){
+    switch(this){
+        case o:
+            document.write('o<br />');
+            break;
+        case p:
+            document.write('p<br />');
+            break;
+        case window:
+            document.write('window<br />');
+            break;          
+    }
+}
+func();
+func.apply(o);
+func.apply(p);
+
+apply를 사용하여 this값을 제어할 수 있다.
+
+
+2.상속
+
+객체의 로직을 그대로 물려 받는 또 다른 객체를 만들 수 있는 기능을 의미한다.
+기존의 로직을 수정하고 변경해서 파생된 새로운 객체를 만들 수 있게 해준다. 
+
+function Person(name){
+    this.name = name;
+}
+Person.prototype.name=null;
+Person.prototype.introduce = function(){
+    return 'My name is '+this.name; 
+}
+var p1 = new Person('egoing');
+document.write(p1.introduce()+"<br />");
+
+전에 사용했던 코드를 prototype을 사용해서 바꾼것이다.
+결과는 전과 똑같이 나온다.
+
+function Person(name){
+    this.name = name;
+}
+Person.prototype.name=null;
+Person.prototype.introduce = function(){
+    return 'My name is '+this.name; 
+}
+ 
+function Programmer(name){
+    this.name = name;
+}
+Programmer.prototype = new Person();
+ 
+var p1 = new Programmer('egoing');
+document.write(p1.introduce()+"<br />");
+
+Programmer라는 생성자를 만들어서 prototype과 Person의 객체를 연결하여
+introduce를 사용할 수 있게 하였다.
+
+
+
+    <script>
+function Person(name){
+    this.name = name;
+}
+Person.prototype.name=null;
+Person.prototype.introduce = function(){
+    return 'My nickname is '+this.name; 
+}
+ 
+function Programmer(name){
+    this.name = name;
+}
+Programmer.prototype = new Person();
+Programmer.prototype.coding = function(){
+    return "hello world";
+}
+ 
+function Designer(name){
+    this.name = name;
+}
+Designer.prototype = new Person();
+Designer.prototype.design = function(){
+    return "beautiful!";
+}
+
+var p1 = new Programmer('egoing');
+document.write(p1.introduce()+"<br />");
+document.write(p1.coding()+"<br />");
+
+var p2 = new Designer('leezche');
+document.write(p2.introduce()+"<br />");
+document.write(p2.design()+"<br />");
+
+이렇게 여러개의 생성자를 생성하여 사용할 수 있다.
+
+
+
+
+
+
