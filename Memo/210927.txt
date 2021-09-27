@@ -1,0 +1,47 @@
+
+1. Object 객체
+
+Object 객체는 객체의 가장 기본적인 형태를 가지고 있는 객체이다.
+값을 저장하는 기본적인 단위로 Object를 사용한다.(저장되어 있다.)
+
+Object.prototype.contain = function(neddle) {
+    for(var name in this){
+        if(this[name] === neddle){
+            return true;
+        }
+    }
+    return false;
+}
+var o = {'name':'egoing', 'city':'seoul'}
+console.log(o.contain('egoing'));
+var a = ['egoing','leezche','grapittie'];
+console.log(a.contain('leezche'));
+
+결과 값
+true
+true
+
+Object 객체는 모든 객체에 영향을 준다.
+
+for(var name in o){
+    console.log(name);  
+}
+
+맨 아래에 이 코드를 실행시키면 
+name
+city
+contain
+
+contain을 없애려면 hasOwnProperty를 사용하면 된다.
+
+for(var name in o){
+    if(o.hasOwnProperty(name))
+        console.log(name);  
+}
+
+이런 식으로 사용하면 된다.
+저것은 Object.prototype.hasOwnProperty이다.
+
+
+
+
